@@ -14,15 +14,20 @@
 
 :root {
   --primary: #E05A1A;
-  --primary-dark: #7B1D1D;
-  --secondary: #D32F2F;
-  --background: #FDF6EE;
-  --card-bg: #ffffff;
-  --text: #000000;
-  --alt--text: #3D0F0F;
-  --text-light: #9CA3AF;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
-  --radius: 16px;
+    --primary-dark: #7B1D1D;
+    --secondary: #D32F2F;
+    --background: #FDF6EE;
+    --whitew: #ffffff;
+    --text: #000000;
+    --alt--text: #3D0F0F;
+    --grey-light: #9CA3AF;
+    --grey-darker: #6B7280;
+    --creams:#FFEDD5;
+    --cream--shadowy:#E5E0DC;
+    --darker--white:#F3F4F6;
+    --ligher--cream:#FDF6EE;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --radius: 16px;
 }
 
 body {
@@ -30,6 +35,31 @@ body {
   background: var(--background);
   color: var(--text);
   padding-bottom: 70px;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+main{
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    background: var(--background);
+    position: relative;
+    padding-bottom: 70px;
+}
+
+#app-content{
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    position: relative;
 }
 
 .tela {
@@ -60,7 +90,7 @@ header {
 }
 
 .parte-superior {
-  background-color: var(--card-bg);
+  background-color: var(--whitew);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,12 +101,23 @@ header {
   max-width: 150px;
 }
 
-.btn-superior {
-  background-color: var(--primary-dark);
-  color: var(--card-bg);
-  border-radius: 20px;
-  padding: 0.9rem;
+.btn-superior{
+    background-color: var(--primary-dark);
+    color: var(--whitew);
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
 }
+
+.btn-superior svg{
+    width: 30px;
+    height: 30px;
+    color: var(--whitew);
+}
+
 
 .hero {
   position: relative;
@@ -147,7 +188,7 @@ header {
   border-radius: 16px;
   min-width: 50px;
   text-align: center;
-  color: var(--card-bg);
+  color: var(--whitew);
 }
 
 .numero span {
@@ -159,16 +200,25 @@ header {
   font-size: 0.4rem;
   font-style: normal;
   letter-spacing: 1px;
-  color: var(--card-bg);
+  color: var(--whitew);
   opacity: 0.8;
 }
 
 .btn-programacao-header {
   background-color: var(--primary);
-  color: var(--card-bg);
+  color: var(--whitew);
   font-family: "lemon milk", Arial, Helvetica, sans-serif;
   padding: 15px 68px;
   border-radius: 25px;
+}
+
+.btn-chegar{
+    background-color: transparent;
+    color: var(--whitew);
+    font-family: 'lemon milk', Arial, Helvetica, sans-serif;
+    padding: 15px 80px;
+    border-radius: 25px;
+    border: var(--darker--white) 2px solid;
 }
 
 /*embaixo da hero*/
@@ -194,7 +244,7 @@ header {
 }
 
 .descricao {
-  color: var(--text-light);
+  color: var(--grey-light);
   font-size: 20px;
   margin-bottom: 50px;
 }
@@ -202,7 +252,7 @@ header {
 .bolinhas {
   display: flex;
   justify-content: center;
-  gap: 40;
+  gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 60px;
 }
@@ -219,13 +269,14 @@ header {
 }
 
 .bolinha p {
-  color: var(--text-light);
+  color: var(--grey-light);
   font-size: 14px;
   line-height: 1.5;
 }
 
 .logo-opaco img {
   width: 150px;
+  opacity: 0.2;
 }
 
 .icone, .icone-alt {
@@ -239,7 +290,7 @@ header {
   margin: 0 auto 20px;
   transition: 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: var(--card-bg);
+  color: var(--whitew);
 }
 
 .icone-alt {
@@ -249,14 +300,14 @@ header {
 .icone svg, .icone-alt svg {
   width: 32px;
   height: 32px;
-  stroke: var(--card-bg);
+  stroke: var(--whitew);
   stroke-width: 0.6;
   transition: 0.3 ease;
 }
 
 .bloco-info {
   background: var(--primary-dark);
-  color: var(--card-bg);
+  color: var(--whitew);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -279,7 +330,7 @@ header {
   font-size: 36px;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .hero {
     display: flex;
     flex-direction: row-reverse;
@@ -315,7 +366,9 @@ header {
     width: 800px !important;
     max-width: none;
   }
-}
+}*/
+
+
 /* ===== SEÇÕES E TÍTULOS ===== */
 .section-title {
   margin: 1rem 0 0.8rem 0;
@@ -332,7 +385,7 @@ header {
 /* ===== CARD PADRÃO ===== */
 .card-show, .card-local, .card-cultura, .card-creditos, .card-patrocinadores,
 .welcome-card, .card-destaque, .card-destaque-alerta {
-  background: var(--card-bg);
+  background: var(--whitew);
   border-radius: var(--radius);
   padding: 1rem;
   margin-bottom: 1rem;
@@ -368,7 +421,7 @@ header {
   border-radius: var(--radius);
   padding: 1.5rem;
   text-align: center;
-  color: var(--text-light);
+  color: var(--grey-light);
 }
 
 .lista-roteiro {
@@ -398,7 +451,7 @@ header {
 
 .roteiro-info span {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: var(--grey-light);
 }
 
 /* ===== PROGRAMAÇÃO ===== */
@@ -461,7 +514,7 @@ header {
 
 .polo-info {
   font-size: 0.75rem;
-  color: var(--text-light);
+  color: var(--grey-light);
 }
 
 .descricao-show {
@@ -523,7 +576,7 @@ header {
 
 .local-endereco, .local-contato {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: var(--grey-light);
   margin-top: 4px;
 }
 
@@ -542,7 +595,7 @@ header {
 .info-message {
   text-align: center;
   padding: 2rem;
-  color: var(--text-light);
+  color: var(--grey-light);
 }
 
 /* ===== CULTURA ===== */
@@ -593,13 +646,15 @@ header {
 #bottom-nav {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
+  background-color: var(--whitew);
   display: flex;
   justify-content: space-around;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
   padding: 0.6rem 0.5rem;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   z-index: 100;
 }
 
@@ -611,7 +666,7 @@ header {
   align-items: center;
   gap: 4px;
   font-size: 0.7rem;
-  color: var(--text-light);
+  color: var(--grey-light);
   cursor: pointer;
   transition: color 0.2s;
 }
