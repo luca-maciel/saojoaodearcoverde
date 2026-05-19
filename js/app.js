@@ -107,15 +107,10 @@ async function carregarProgramacao() {
     todosOsShows = valores.map((linha, index) => {
       return {
         dia: `${String(linha[0]).toUpperCase()} ${linha[1]}`,
-
         data: linha[1],
-
         artista: linha[2],
-
         horario: calcularHorarioPorOrdem((index % 5) + 1),
-
         polo: "Palco Principal",
-
         descricao: "",
       };
     });
@@ -236,7 +231,7 @@ function renderizarShows(listaDeShows) {
         return;
     }
     
-    const listaOrdenada = ordenarShows(listaDeShows);
+    const listaOrdenada = listaDeShows;
     let diaAtual = '';
     
     listaOrdenada.forEach(show => {
