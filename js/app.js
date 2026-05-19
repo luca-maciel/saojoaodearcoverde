@@ -69,7 +69,7 @@ async function iniciarBanco(){
         `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
     });
 
-    const response = await fetch('../db/sjDbTeste.db');
+    const response = await fetch('./db/sjDbTeste.db');
 
     const buffer = await response.arrayBuffer();
 
