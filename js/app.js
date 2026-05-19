@@ -56,6 +56,12 @@ function calcularHorarioPorOrdem(ordem) {
     return horarios[ordem] || "21:00";
 }
 
+function montarEndereco(local) {
+    return [local.rua, local.bairro, local.complemento]
+        .filter(Boolean)
+        .join(' - ');
+}
+
 // ============================================
 // CARREGAMENTO DOS DADOS
 // ============================================
@@ -133,8 +139,21 @@ async function carregarLocais() {
         todosOsLocais = [];
         // RESTAURANTES
         const restaurantes = db.exec(`
-            SELECT *
-            FROM restaurantes
+            select
+                r.telefone as contato,
+                r.nome as restaurante,
+                er.bairro as bairro,
+                er.rua as rua,
+                er.complemento as complemento
+                
+            from 
+                endereco_restaurante er
+            JOIN
+                restaurantes r on r.id = er.id_restaurante
+            group by
+                contato, restaurante, bairro, rua, complemento
+            order by
+                bairro;
         `);
 
         if (restaurantes.length) {
@@ -146,9 +165,9 @@ async function carregarLocais() {
                 });
                 todosOsLocais.push({
                     categoria: 'comer',
-                    nome: r.nome,
-                    endereco: `${r.rua || ''}, ${r.numero || ''}`,
-                    contato: r.telefone,
+                    nome: r.restaurante,
+                    endereco: montarEndereco(r),
+                    contato: r.contato,
                     descricao: '🍽️ Restaurante'
                 });
             });
@@ -156,8 +175,18 @@ async function carregarLocais() {
         // HOTÉIS
 
         const hoteis = db.exec(`
-            SELECT *
-            FROM hoteis
+            select 
+                h.telefone as contato,
+                h.nome as nome, 
+                eh.bairro as bairro,
+                eh.rua as rua,
+                eh.complemento as complemento
+            FROM
+                endereco_hoteis eh
+            JOIN
+                hoteis h on h.id = eh.id_hotel
+            group by contato, nome, bairro, rua, complemento
+            order by bairro;
         `);
 
         if (hoteis.length) {
@@ -170,8 +199,8 @@ async function carregarLocais() {
                 todosOsLocais.push({
                     categoria: 'ficar',
                     nome: h.nome,
-                    endereco: `${h.rua || ''}, ${h.numero || ''}`,
-                    contato: h.telefone,
+                    endereco: montarEndereco(h),
+                    contato: h.contato,
                     descricao: '🏨 Hotel'
                 });
             });
@@ -353,8 +382,6 @@ function mostrarMapa() {
 
 function navegarPara(idTela) {
 
-    let shows = todosOsShows; 
-
     document.querySelectorAll('.tela')
     .forEach(tela => {
         tela.classList.remove('ativa');
@@ -403,6 +430,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Iniciando App São João de Arcoverde v2...');
     await iniciarBanco();
     await carregarProgramacao();
+    await carregarLocais();
     
     
 
