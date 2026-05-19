@@ -16,12 +16,12 @@
     <!-- Favicon -->
     <link rel="apple-touch-icon" href="assets/icons/favicon.jpg">
 </head>
-<body style="display: flex; flex-direction: column;">
+<body>
 
     <header class="parte-superior">
-        <img src="assets/images/logoSJ.png" class="logo-superior">
+        <img src="assets/images/logoSJ.png" class="logo-superior" onclick="navegarPara('tela-inicio')">
 
-        <button class="btn-superior">Shows</button>
+        <button class="btn-superior" onclick="navegarPara('tela-programacao')">Shows</button>
     </header>
 
     
@@ -84,7 +84,7 @@
 
                 </div>
 
-                <button class="btn-programacao-header">
+                <button class="btn-programacao-header" onclick="navegarPara('tela-programacao')">
                     Ver programação
                 </button>
 

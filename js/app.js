@@ -353,6 +353,8 @@ function mostrarMapa() {
 
 function navegarPara(idTela) {
 
+    let shows = todosOsShows; 
+
     document.querySelectorAll('.tela')
     .forEach(tela => {
         tela.classList.remove('ativa');
@@ -362,7 +364,6 @@ function navegarPara(idTela) {
         document.getElementById(idTela)
         .classList.add('ativa');
     }, 50);
-
 
     switch(idTela) {
         case 'tela-inicio':
