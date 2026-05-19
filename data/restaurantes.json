@@ -1,0 +1,132 @@
+[
+    {
+        "bairro": "Centro",
+        "cep": "56506-620",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 1,
+        "id_restaurante": 1,
+        "numero": "21",
+        "rua": "Rua Dantas Barreto"
+    },
+    {
+        "bairro": "Coronel Siqueira Campos",
+        "cep": "56511-000",
+        "cidade": "Arcoverde",
+        "complemento": "BR 232 Km 253",
+        "id": 2,
+        "id_restaurante": 2,
+        "numero": "4160",
+        "rua": "Avenida Osvaldo Cruz"
+    },
+    {
+        "bairro": "Centro",
+        "cep": "56506-655",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 3,
+        "id_restaurante": 3,
+        "numero": "69",
+        "rua": "Rua Voluntarios da Patria"
+    },
+    {
+        "bairro": "Santos Dumont",
+        "cep": "56500-000",
+        "cidade": "Arcoverde",
+        "complemento": "Próx. à rodovia",
+        "id": 4,
+        "id_restaurante": 4,
+        "numero": "3605",
+        "rua": "Rodovia Luiz Gonzaga"
+    },
+    {
+        "bairro": "Centro",
+        "cep": "56505-050",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 5,
+        "id_restaurante": 5,
+        "numero": null,
+        "rua": "Avenida Dom Pedro II"
+    },
+    {
+        "bairro": "São Miguel",
+        "cep": "56509-540",
+        "cidade": "Arcoverde",
+        "complemento": "Avenida Sebastião Luiz Cavalcante Antiga",
+        "id": 6,
+        "id_restaurante": 6,
+        "numero": "417",
+        "rua": "Rua Armando de Siqueira Brito"
+    },
+    {
+        "bairro": "Centro",
+        "cep": "56506-100",
+        "cidade": "Arcoverde",
+        "complemento": "1° ANDAR",
+        "id": 7,
+        "id_restaurante": 7,
+        "numero": "567",
+        "rua": "Avenida Coronel Antônio Japiassú"
+    },
+    {
+        "bairro": "Centro",
+        "cep": "56512-520",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 8,
+        "id_restaurante": 8,
+        "numero": "83",
+        "rua": "Largo Antônio Franklin Cordeiro"
+    },
+    {
+        "bairro": "São Miguel",
+        "cep": "56510-250",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 9,
+        "id_restaurante": 9,
+        "numero": "97-147",
+        "rua": "Rua Mario Napoleão Arcoverde"
+    },
+    {
+        "bairro": "São Cristóvão",
+        "cep": "56512-000",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 10,
+        "id_restaurante": 10,
+        "numero": "540",
+        "rua": "Avenida José Bonifácio"
+    },
+    {
+        "bairro": "São Cristóvão",
+        "cep": "56512-000",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 11,
+        "id_restaurante": 11,
+        "numero": null,
+        "rua": "Não informado"
+    },
+    {
+        "bairro": "Centro",
+        "cep": "56505-050",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 12,
+        "id_restaurante": 12,
+        "numero": "22",
+        "rua": "Avenida Dom Pedro II"
+    },
+    {
+        "bairro": "Centro",
+        "cep": "56505-350",
+        "cidade": "Arcoverde",
+        "complemento": null,
+        "id": 13,
+        "id_restaurante": 13,
+        "numero": "94",
+        "rua": "Praça da Bandeira"
+    }
+]

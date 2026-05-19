@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "nome": "Max Hotel",
+        "telefone": "+558738221552"
+    },
+    {
+        "id": 2,
+        "nome": "LW Hotel",
+        "telefone": "+5587996348078"
+    },
+    {
+        "id": 3,
+        "nome": "Hotel Cintra",
+        "telefone": "+5587999968115"
+    },
+    {
+        "id": 4,
+        "nome": "Amaretto Hotel",
+        "telefone": "+5587988064232"
+    },
+    {
+        "id": 5,
+        "nome": "Ibis Hotel",
+        "telefone": "+558733213200"
+    },
+    {
+        "id": 6,
+        "nome": "Hotel Cruzeiro",
+        "telefone": "+5587996192624"
+    },
+    {
+        "id": 7,
+        "nome": "Hotel Serrano Imperial",
+        "telefone": "+5587991829474"
+    },
+    {
+        "id": 8,
+        "nome": "Palace Hotel",
+        "telefone": "+558738310704"
+    },
+    {
+        "id": 9,
+        "nome": "Hotel Monteirão",
+        "telefone": "+558721590306"
+    },
+    {
+        "id": 10,
+        "nome": "Hotel Olho D`Água",
+        "telefone": "+5587991670380"
+    }
+]
