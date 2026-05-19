@@ -3,6 +3,10 @@
 // Integrado com dados do SQLite
 // ============================================
 
+
+
+
+
 let todosOsShows = [];
 let todosOsLocais = [];
 
@@ -56,70 +60,130 @@ function calcularHorarioPorOrdem(ordem) {
 // CARREGAMENTO DOS DADOS
 // ============================================
 
-async function carregarProgramacao() {
-    try {
-        const resposta = await fetch('data/programacao.json');
-        const dados = await resposta.json();
-        
-        todosOsShows = dados.map(item => ({
-            id: item.ordem_atracao || Math.random(),
-            dia: `${item.dia_semana.toUpperCase()} ${item.data.split('/')[0]}`,
-            data: item.data,
-            artista: item.artista,
-            horario: calcularHorarioPorOrdem(item.ordem_atracao),
-            polo: item.categoria === 'Coco' ? 'Polo Cultural' : 'Palco Principal',
-            descricao: item.descricao || ''
-        }));
-        
-        renderizarShows(todosOsShows);
-        preencherFiltroDias(todosOsShows);
+// Função para iniciar o banco
 
-        
-        console.log(' Programação carregada:', todosOsShows.length, 'shows');
-    } catch (erro) {
-        console.error("Erro ao carregar programação:", erro);
-        document.getElementById('lista-programacao').innerHTML = 
-            "<p>Não foi possível carregar a programação.</p>";
+let db;
+
+async function iniciarBanco(){
+    const SQL = await initSqlJs({locateFile: file =>
+        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
+    });
+
+    const response = await fetch('../db/sjDbTeste.db');
+
+    const buffer = await response.arrayBuffer();
+
+    db = new SQL.Database(new Uint8Array(buffer));
+
+    console.log("banco carregado");
+
+}
+
+async function carregarProgramacao() {
+  try {
+    const resultado = db.exec(`
+            select
+                c.dia_semana,
+                c.data,
+                a.nome as atracao
+            from
+                atracoes a
+            join
+                calendario_atracoes ca on ca.id_atracao = a.id
+            join
+                calendario c on c.id = ca.id_dia
+            order by
+                c.data;
+        `);
+
+    if (!resultado.length) {
+      renderizarShows([]);
+
+      return;
     }
+
+    const valores = resultado[0].values;
+
+    todosOsShows = valores.map((linha, index) => {
+      return {
+        dia: `${String(linha[0]).toUpperCase()} ${linha[1]}`,
+
+        data: linha[1],
+
+        artista: linha[2],
+
+        horario: calcularHorarioPorOrdem((index % 5) + 1),
+
+        polo: "Palco Principal",
+
+        descricao: "",
+      };
+    });
+
+    console.log(todosOsShows);
+
+    renderizarShows(todosOsShows);
+
+    preencherFiltroDias(todosOsShows);
+
+    console.log("✅ Programação carregada!");
+  } catch (erro) {
+    console.error("❌ Erro ao carregar programação:", erro);
+  }
 }
 
 async function carregarLocais() {
+
     try {
-        const [resRest, resHotel] = await Promise.all([
-            fetch('data/restaurantes.json'),
-            fetch('data/hoteis.json')
-        ]);
-        
-        const restaurantes = await resRest.json();
-        const hoteis = await resHotel.json();
-        
-        todosOsLocais = [
-            ...restaurantes.map(r => ({
-                categoria: 'comer',
-                nome: r.nome,
-                endereco: `${r.rua || ''}, ${r.numero || ''} - ${r.bairro || ''}, ${r.cidade || ''}`,
-                contato: r.telefone,
-                descricao: `🍽️ ${r.bairro || 'Centro'}`
-            })),
-            ...hoteis.map(h => ({
-                categoria: 'ficar',
-                nome: h.nome,
-                endereco: `${h.rua || ''}, ${h.numero || ''} - ${h.bairro || ''}, ${h.cidade || ''}`,
-                contato: h.telefone,
-                descricao: `🏨 ${h.bairro || 'Centro'}`
-            }))
-        ];
-        
-        // Adicionar pontos turísticos se existir o arquivo
-        try {
-            const resTur = await fetch('data/turismo.json');
-            const turismo = await resTur.json();
-            todosOsLocais.push(...turismo.map(t => ({ ...t, categoria: 'turismo' })));
-        } catch(e) {
-            console.log('Arquivo turismo.json não encontrado');
+        todosOsLocais = [];
+        // RESTAURANTES
+        const restaurantes = db.exec(`
+            SELECT *
+            FROM restaurantes
+        `);
+
+        if (restaurantes.length) {
+            const cols = restaurantes[0].columns;
+            restaurantes[0].values.forEach(linha => {
+                const r = {};
+                cols.forEach((c, i) => {
+                    r[c] = linha[i];
+                });
+                todosOsLocais.push({
+                    categoria: 'comer',
+                    nome: r.nome,
+                    endereco: `${r.rua || ''}, ${r.numero || ''}`,
+                    contato: r.telefone,
+                    descricao: '🍽️ Restaurante'
+                });
+            });
         }
-        
-        console.log('✅ Locais carregados:', todosOsLocais.length);
+        // HOTÉIS
+
+        const hoteis = db.exec(`
+            SELECT *
+            FROM hoteis
+        `);
+
+        if (hoteis.length) {
+            const cols = hoteis[0].columns;
+            hoteis[0].values.forEach(linha => {
+                const h = {};
+                cols.forEach((c, i) => {
+                    h[c] = linha[i];
+                });
+                todosOsLocais.push({
+                    categoria: 'ficar',
+                    nome: h.nome,
+                    endereco: `${h.rua || ''}, ${h.numero || ''}`,
+                    contato: h.telefone,
+                    descricao: '🏨 Hotel'
+                });
+            });
+        }
+
+        console.log("Locais carregados!");
+
     } catch (erro) {
         console.error("Erro ao carregar locais:", erro);
     }
@@ -293,15 +357,18 @@ function mostrarMapa() {
 // ============================================
 
 function navegarPara(idTela) {
-    const telas = document.querySelectorAll('.tela')
-     .forEach(tela => {
-        tela.classList.remove('ativa');
-     });
 
-     document.getElementById(idTela)
-     .classList.add('ativa');
-        
-    
+    document.querySelectorAll('.tela')
+    .forEach(tela => {
+        tela.classList.remove('ativa');
+    });
+
+    setTimeout(() => {
+        document.getElementById(idTela)
+        .classList.add('ativa');
+    }, 50);
+
+
     switch(idTela) {
         case 'tela-inicio':
             break;
@@ -338,15 +405,14 @@ if ('serviceWorker' in navigator) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Iniciando App São João de Arcoverde v2...');
-    
+    await iniciarBanco();
     await carregarProgramacao();
-    await carregarLocais();
     
     
+
     // Garantir tela inicial visível
    
-    
-console.log('✅ App pronto!');
+    console.log('✅ App pronto!');
 });
 
 // Expor funções globalmente

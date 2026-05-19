@@ -16,7 +16,7 @@
     <!-- Favicon -->
     <link rel="apple-touch-icon" href="assets/icons/favicon.jpg">
 </head>
-<body>
+<body style="display: flex; flex-direction: column;">
 
     <header class="parte-superior">
         <img src="assets/images/logoSJ.png" class="logo-superior">
@@ -28,8 +28,8 @@
     <main id="app-content">
         
         <!-- TELA 1: INÍCIO -->
-         
-         
+    
+        
         <section id="tela-inicio" class="tela ativa">
 
             <section class="hero">
@@ -175,7 +175,6 @@
             <div class="section-title">
                 <h2>x Programação Oficial</h2>
             </div>
-
             <div class="filtros">
                 <label for="filtro-dia">x Filtrar por dia:</label>
                 <select id="filtro-dia" onchange="filtrarPorDia(this.value)">
@@ -313,5 +312,6 @@
     </nav>
 
     <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
 </body>
 </html>
