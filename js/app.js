@@ -66,7 +66,7 @@ let db;
 
 async function iniciarBanco(){
     const SQL = await initSqlJs({locateFile: file =>
-        `./js/${file}`
+        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
     });
 
     const response = await fetch('../db/sjDbTeste.db');
