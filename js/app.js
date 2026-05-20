@@ -1,52 +1,16 @@
-// ============================================
-// SÃO JOÃO DE ARCOVERDE - APP OFFLINE v2
+// SÃO JOÃO EM ARCOVERDE - COM SQLITE
 // Integrado com dados do SQLite
-// ============================================
-
-
-
-
 
 let todosOsShows = [];
 let todosOsLocais = [];
+let db;
 
-// ============================================
-// FUNÇÕES DE ORDENAÇÃO E UTILITÁRIOS
-// ============================================
+// FUNÇÕES UTILITÁRIAS
 
-function ordenarShows(lista) {
-    const ordemDias = {
-        "SÁBADO": 1, "DOMINGO": 2, "SEGUNDA": 3, "TERÇA": 4,
-        "QUARTA": 5, "QUINTA": 6, "SEXTA": 7
-    };
-    
-    return [...lista].sort((a, b) => {
-        const diaA = a.dia.split(' ')[0];
-        const diaB = b.dia.split(' ')[0];
-        if (diaA !== diaB) return ordemDias[diaA] - ordemDias[diaB];
-        
-        const horaA = parseInt(a.horario.split(':')[0]);
-        const horaB = parseInt(b.horario.split(':')[0]);
-        return horaA - horaB;
-    });
-}
-
-function mostrarToast(mensagem) {
-    let toast = document.getElementById('toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'toast';
-        toast.style.cssText = `
-            position: fixed; bottom: 80px; left: 20px; right: 20px;
-            background: #333; color: white; text-align: center;
-            padding: 12px; border-radius: 8px; z-index: 1000;
-            transition: opacity 0.3s; opacity: 0; font-size: 14px;
-        `;
-        document.body.appendChild(toast);
-    }
-    toast.textContent = mensagem;
-    toast.style.opacity = '1';
-    setTimeout(() => toast.style.opacity = '0', 2000);
+function montarEndereco(local) {
+    return [local.rua, local.bairro, local.complemento]
+        .filter(Boolean)
+        .join(' - ');
 }
 
 function calcularHorarioPorOrdem(ordem) {
@@ -56,34 +20,20 @@ function calcularHorarioPorOrdem(ordem) {
     return horarios[ordem] || "21:00";
 }
 
-function montarEndereco(local) {
-    return [local.rua, local.bairro, local.complemento]
-        .filter(Boolean)
-        .join(' - ');
-}
-
-// ============================================
-// CARREGAMENTO DOS DADOS
-// ============================================
-
-// Função para iniciar o banco
-
-let db;
+// BANCO DE DADOS SQLITE
 
 async function iniciarBanco(){
     const SQL = await initSqlJs({locateFile: file =>
         `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
     });
-
     const response = await fetch('./db/sjDbTeste.db');
-
     const buffer = await response.arrayBuffer();
-
     db = new SQL.Database(new Uint8Array(buffer));
-
-    console.log("banco carregado");
+    console.log("Banco carregado");
 
 }
+
+// CARREGAR PROGRAMAÇÃO
 
 async function carregarProgramacao() {
   try {
@@ -110,6 +60,7 @@ async function carregarProgramacao() {
 
     const valores = resultado[0].values;
 
+    // Mapeia os dados do banco
     todosOsShows = valores.map((linha, index) => {
       return {
         dia: `${String(linha[0]).toUpperCase()} ${linha[1]}`,
@@ -122,16 +73,15 @@ async function carregarProgramacao() {
     });
 
     console.log(todosOsShows);
-
     renderizarShows(todosOsShows);
-
     preencherFiltroDias(todosOsShows);
-
     console.log("✅ Programação carregada!");
   } catch (erro) {
     console.error("❌ Erro ao carregar programação:", erro);
   }
 }
+
+// CARREGAR LOCAIS (RESTAURANTES + HOTEIS)
 
 async function carregarLocais() {
 
@@ -213,9 +163,7 @@ async function carregarLocais() {
     }
 }
 
-// ============================================
-// FUNÇÕES DA PROGRAMAÇÃO
-// ============================================
+// FILTROS DA PROGRAMAÇÃO
 
 function preencherFiltroDias(lista) {
     const select = document.getElementById('filtro-dia');
@@ -248,6 +196,8 @@ function filtrarPorDia(diaEscolhido) {
         renderizarShows(showsFiltrados);
     }
 }
+
+// RENDERIZAR SHOWS
 
 function renderizarShows(listaDeShows) {
     const container = document.getElementById('lista-programacao');
@@ -289,39 +239,7 @@ function renderizarShows(listaDeShows) {
     });
 }
 
-// ============================================
-// ROTEIRO PERSONALIZADO
-// ============================================
-
-// ============================================
-// "ACONTECENDO AGORA"
-// ============================================
-
-function mostrarAcontecendoAgora() {
-    const container = document.getElementById('acontecendo-agora');
-
-    if (!container) return;
-
-    const destaques = todosOsShows.slice(0, 3);
-
-    container.innerHTML = '';
-
-    destaques.forEach(show => {
-        container.innerHTML += `
-            <div class="card-destaque-alerta">
-                <div class="alerta-conteudo">
-                    <strong>${show.artista}</strong>
-                    <div> ${show.horario}</div>
-                    <div> ${show.polo}</div>
-                </div>
-            </div>
-        `;
-    });
-}
-
-// ============================================
-// TELA EXPLORAR
-// ============================================
+// RENDERIZAR LOCAIS (EXPLORAR)
 
 function renderizarLocais(categoriaDesejada) {
     const container = document.getElementById('conteudo-explorar');
@@ -355,6 +273,32 @@ function renderizarLocais(categoriaDesejada) {
     });
 }
 
+// ACONTECENDO AGORA
+
+function mostrarAcontecendoAgora() {
+    const container = document.getElementById('acontecendo-agora');
+
+    if (!container) return;
+
+    const destaques = todosOsShows.slice(0, 3);
+
+    container.innerHTML = '';
+
+    destaques.forEach(show => {
+        container.innerHTML += `
+            <div class="card-destaque-alerta">
+                <div class="alerta-conteudo">
+                    <strong>${show.artista}</strong>
+                    <div> ${show.horario}</div>
+                    <div> ${show.polo}</div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// MAPA OFFLINE
+
 function mostrarMapa() {
     const container = document.getElementById('conteudo-explorar');
     if (!container) return;
@@ -376,9 +320,7 @@ function mostrarMapa() {
     `;
 }
 
-// ============================================
 // NAVEGAÇÃO ENTRE TELAS
-// ============================================
 
 function navegarPara(idTela) {
 
@@ -410,43 +352,7 @@ function navegarPara(idTela) {
     }
 }
 
-// ============================================
-// SERVICE WORKER
-// ============================================
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker registrado!', reg))
-            .catch(err => console.log('Service Worker falhou:', err));
-    });
-}
-
-// ============================================
-// INICIALIZAÇÃO
-// ============================================
-
-document.addEventListener('DOMContentLoaded', async () => {
-    console.log('Iniciando App São João de Arcoverde v2...');
-    await iniciarBanco();
-    await carregarProgramacao();
-    await carregarLocais();
-    
-    
-
-    // Garantir tela inicial visível
-   
-    console.log('✅ App pronto!');
-});
-
-// Expor funções globalmente
-window.navegarPara = navegarPara;
-window.filtrarPorDia = filtrarPorDia;
-window.renderizarLocais = renderizarLocais;
-window.mostrarMapa = mostrarMapa;
-
-
-//bomba
+// CONTADOR REGRESSIVO
 
 const dataEvento = new Date ("2026-06-13T18:00:00");
 
@@ -489,5 +395,57 @@ function atualizarContador (){
   segundosEv.textContent = String(segundos).padStart(2,"0");
 }
 
+// inicia o contador
 atualizarContador();
 setInterval(atualizarContador, 1000);
+
+// SERVICE WORKER
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker registrado!', reg))
+            .catch(err => console.log('Service Worker falhou:', err));
+    });
+}
+
+// INICIALIZAÇÃO
+
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Iniciando App São João de Arcoverde v2...');
+    await iniciarBanco();
+    await carregarProgramacao();
+    await carregarLocais();
+    
+    // Garantir tela inicial visível
+   
+    console.log('✅ App pronto!');
+});
+
+// Expor funções globalmente
+window.navegarPara = navegarPara;
+window.filtrarPorDia = filtrarPorDia;
+window.renderizarLocais = renderizarLocais;
+window.mostrarMapa = mostrarMapa;
+
+
+
+/* por já ter no banco de dados, vai ficar para uma próxima versão, caso queira testar a ordenação localmente, 
+basta descomentar essa função e usar ela no lugar do sort atual em renderizarShows()
+
+function ordenarShows(lista) {
+    const ordemDias = {
+        "SÁBADO": 1, "DOMINGO": 2, "SEGUNDA": 3, "TERÇA": 4,
+        "QUARTA": 5, "QUINTA": 6, "SEXTA": 7
+    };
+    
+    return [...lista].sort((a, b) => {
+        const diaA = a.dia.split(' ')[0];
+        const diaB = b.dia.split(' ')[0];
+        if (diaA !== diaB) return ordemDias[diaA] - ordemDias[diaB];
+        
+        const horaA = parseInt(a.horario.split(':')[0]);
+        const horaB = parseInt(b.horario.split(':')[0]);
+        return horaA - horaB;
+    });
+} */

@@ -1,3 +1,5 @@
+// service worker para cache dos arquivos essenciais e suporte offline
+
 const CACHE_NAME = 'sao-joao-arcoverde-v2';
 
 // Arquivos essenciais para cache
@@ -7,9 +9,8 @@ const assetsToCache = [
     './manifest.json',
     './css/style.css',
     './js/app.js',
-    './data/programacao.json',
-    './data/restaurantes.json',
-    './data/hoteis.json'
+    './js/sql-wasm.js',
+    './db/sjDbTeste.db'
 ];
 
 // Instalação - cache dos arquivos
