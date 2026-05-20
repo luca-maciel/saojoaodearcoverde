@@ -6,6 +6,15 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "lilita one";
+  src: url("../assets/fontes/Lilita_One/LilitaOne-Regular.ttf") format(opentype);
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +35,7 @@
     --cream--shadowy:#E5E0DC;
     --darker--white:#F3F4F6;
     --ligher--cream:#FDF6EE;
+    --darker-wine: #3D0C0C;
     --shadow: 0 2px 8px rgba(0,0,0,0.1);
     --radius: 16px;
 }
@@ -282,6 +292,7 @@ header {
   font-family: "lemon milk", Arial, Helvetica, sans-serif;
   padding: 15px 68px;
   border-radius: 25px;
+  border: none;
 }
 
 .btn-chegar{
@@ -330,7 +341,7 @@ header {
 }
 
 .bolinha {
-  width: 180px;
+  width: 150px;
   text-align: center;
 }
 
@@ -349,6 +360,7 @@ header {
 .logo-opaco img {
   width: 150px;
   opacity: 0.2;
+  margin-bottom: 10px;
 }
 
 .icone, .icone-alt {
@@ -373,34 +385,92 @@ header {
   width: 32px;
   height: 32px;
   stroke: var(--whitew);
-  stroke-width: 0.6;
+  stroke-width: 0.2;
   transition: 0.3 ease;
 }
 
 .bloco-info {
-  background: var(--primary-dark);
+  font-family: 'lilita one', Arial, Helvetica, sans-serif;
+  position: relative;
+  background: var(--darker-wine);
   color: var(--whitew);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 40px;
-  flex-wrap: wrap;
+  padding: 15px 15px;
+  overflow: hidden;
+  gap: 20px;
+  text-align: start;
+}
+
+.bloco{
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.info-icon{
+  color: var(--primary);
+}
+
+.info-icon svg{
+  width: 40px;
+  height: 40px;
+  stroke-width: 0.2;
 }
 
 .bloco p {
   color: var(--primary);
-  font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  font-size: 9px;
+  font-weight: 100;
 }
 
 .bloco span {
   color: var(--primary);
-  font-weight: bold;
+  font-weight: 100;
+  font-size: 12px;
 }
 
 .bloco h2 {
-  font-size: 36px;
+  color: var(--whitew);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 100;
 }
+
+.info-linha{
+  width: 1px;
+  height: 70px;
+  background-color: var(--whitew);
+  opacity: 0.3;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-fundo{
+  position: absolute;
+  width: 150px;
+  opacity: 0.08;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.logo-fundo img{
+  width: 140px;
+  display: block;
+}
+
 
 /*@media (min-width: 768px) {
   .hero {
