@@ -158,6 +158,35 @@ async function carregarLocais() {
 
         console.log("Locais carregados!");
 
+        const pontosTuristicos = db.exec(`
+                select 
+                    t.nome as nome,
+                    t.categoria as categoria,
+                    t.descricao as descricao,
+                    t.endereco as endereco
+                from
+                    turismo t
+                order by
+                    nome;
+            `);
+        
+        if (pontosTuristicos.length) {
+            const cols = pontosTuristicos[0].columns;
+            pontosTuristicos[0].values.forEach(linha => {
+                const t = {};
+                cols.forEach((c, i) => {
+                    t[c] = linha[i];
+                });
+                todosOsLocais.push({
+                    categoria: 'turismo',
+                    nome: t.nome,
+                    endereco: t.endereco,
+                    contato: '',
+                    descricao: `📸 ${t.descricao || 'Ponto Turístico'}`
+                });
+            });
+        }
+
     } catch (erro) {
         console.error("Erro ao carregar locais:", erro);
     }
