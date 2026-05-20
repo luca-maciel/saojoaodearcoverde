@@ -2,9 +2,18 @@
   "name": "São João de Arcoverde",
   "short_name": "SJ Arcoverde",
   "description": "Guia completo e offline do São João de Arcoverde",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#d32f2f",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/images/favicon.jpg",
+      "sizes": "192x192 512x512 1024x1024",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
 }

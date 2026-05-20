@@ -440,8 +440,70 @@ if ('serviceWorker' in navigator) {
 
 // INICIALIZAÇÃO
 
+// INSTALACAO DO APP
+
+let promptInstalacao = null;
+
+function appJaInstalado() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function navegadorIos() {
+    return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+}
+
+function configurarBotaoInstalar() {
+    const botaoInstalar = document.getElementById('btn-instalar-app');
+
+    if (!botaoInstalar || appJaInstalado()) {
+        return;
+    }
+
+    if (navegadorIos()) {
+        botaoInstalar.hidden = false;
+    }
+
+    botaoInstalar.addEventListener('click', async () => {
+        if (!promptInstalacao) {
+            alert('Para salvar como app, toque em Compartilhar e depois em Adicionar a Tela de Inicio.');
+            return;
+        }
+
+        promptInstalacao.prompt();
+        const escolha = await promptInstalacao.userChoice;
+
+        if (escolha.outcome === 'accepted') {
+            botaoInstalar.hidden = true;
+        }
+
+        promptInstalacao = null;
+    });
+}
+
+window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    promptInstalacao = event;
+
+    const botaoInstalar = document.getElementById('btn-instalar-app');
+
+    if (botaoInstalar && !appJaInstalado()) {
+        botaoInstalar.hidden = false;
+    }
+});
+
+window.addEventListener('appinstalled', () => {
+    promptInstalacao = null;
+
+    const botaoInstalar = document.getElementById('btn-instalar-app');
+
+    if (botaoInstalar) {
+        botaoInstalar.hidden = true;
+    }
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Iniciando App São João de Arcoverde v2...');
+    configurarBotaoInstalar();
     await iniciarBanco();
     await carregarProgramacao();
     await carregarLocais();

@@ -102,6 +102,34 @@ header{
     color: var(--whitew);
 }
 
+.btn-instalar-app {
+    position: fixed;
+    right: 16px;
+    bottom: 86px;
+    z-index: 120;
+    border: none;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--whitew);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    padding: 12px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-instalar-app[hidden] {
+    display: none;
+}
+
+.btn-instalar-app svg {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+}
+
 .hero{
     position:relative;
     display: flex;
