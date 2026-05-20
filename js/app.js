@@ -351,7 +351,18 @@ function mostrarMapa() {
 
 // NAVEGAÇÃO ENTRE TELAS
 
+function posicionarBotaoInstalar(idTela) {
+    const botaoInstalar = document.getElementById('btn-instalar-app');
+    const slot = document.querySelector(`[data-install-slot="${idTela}"]`);
+
+    if (botaoInstalar && slot && botaoInstalar.parentElement !== slot) {
+        slot.appendChild(botaoInstalar);
+    }
+}
+
 function navegarPara(idTela) {
+
+    posicionarBotaoInstalar(idTela);
 
     document.querySelectorAll('.tela')
     .forEach(tela => {
@@ -454,6 +465,9 @@ function navegadorIos() {
 
 function configurarBotaoInstalar() {
     const botaoInstalar = document.getElementById('btn-instalar-app');
+    const telaAtiva = document.querySelector('.tela.ativa');
+
+    posicionarBotaoInstalar(telaAtiva?.id || 'tela-inicio');
 
     if (!botaoInstalar || appJaInstalado()) {
         return;

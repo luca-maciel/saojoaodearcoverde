@@ -118,22 +118,48 @@ header {
     color: var(--whitew);
 }
 
+.cabecalho-tela {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 1rem 0 0.8rem 0;
+}
+
+.cabecalho-tela .section-title {
+  margin: 0;
+}
+
+.instalar-app-slot {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+.instalar-app-slot-inicio {
+  justify-content: center;
+  margin-top: 32px;
+}
+
 .btn-instalar-app {
-  position: fixed;
-  right: 16px;
-  bottom: 86px;
-  z-index: 120;
   border: none;
   border-radius: 999px;
   background: var(--primary);
-  color: var(--whitew);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  color: var(--whitew, #ffffff);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.16);
   padding: 12px 16px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.instalar-app-slot-inicio .btn-instalar-app {
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
+  padding: 14px 18px;
 }
 
 .btn-instalar-app[hidden] {
@@ -144,6 +170,24 @@ header {
   width: 22px;
   height: 22px;
   flex: 0 0 auto;
+}
+
+@media (max-width: 420px) {
+  .cabecalho-tela {
+    align-items: flex-start;
+  }
+  .cabecalho-tela .section-title h2 {
+    font-size: 1.05rem;
+  }
+  .cabecalho-tela .btn-instalar-app span {
+    display: none;
+  }
+  .cabecalho-tela .btn-instalar-app {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    padding: 0;
+  }
 }
 
 

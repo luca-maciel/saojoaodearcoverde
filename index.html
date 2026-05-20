@@ -38,14 +38,6 @@
                     <span>Shows</span>
                 </button>
 
-                <button id="btn-instalar-app" class="btn-instalar-app" type="button" hidden>
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z" />
-                    </svg>
-                    <span>Salvar como app</span>
-                </button>
-
             </header>
 
             <section class="hero">
@@ -174,13 +166,26 @@
                     </div>
                 </div>
 
+                <div class="instalar-app-slot instalar-app-slot-inicio" data-install-slot="tela-inicio">
+                    <button id="btn-instalar-app" class="btn-instalar-app" type="button" hidden>
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z" />
+                        </svg>
+                        <span>Salvar app</span>
+                    </button>
+                </div>
+
             </section>
         </section>
 
         <!-- TELA: PROGRAMAÇÃO -->
         <section id="tela-programacao" class="tela">
-            <div class="section-title">
-                <h2>x Programação Oficial</h2>
+            <div class="cabecalho-tela">
+                <div class="section-title">
+                    <h2>x Programação Oficial</h2>
+                </div>
+                <div class="instalar-app-slot" data-install-slot="tela-programacao"></div>
             </div>
             <div class="filtros">
                 <label for="filtro-dia">x Filtrar por dia:</label> <!-- trocar o X pelo ícone -->
@@ -195,8 +200,11 @@
 
         <!-- TELA: EXPLORAR -->
         <section id="tela-explorar" class="tela">
-            <div class="section-title">
-                <h2>x Explorar Arcoverde</h2> <!-- trocar o X pelo ícone -->
+            <div class="cabecalho-tela">
+                <div class="section-title">
+                    <h2>x Explorar Arcoverde</h2> <!-- trocar o X pelo ícone -->
+                </div>
+                <div class="instalar-app-slot" data-install-slot="tela-explorar"></div>
             </div>
 
             <nav class="explorar-menu">
@@ -224,8 +232,11 @@
 
         <!-- TELA 4: CULTURA -->
         <section id="tela-cultura" class="tela">
-            <div class="section-title">
-                <h2>x História e Tradição</h2>
+            <div class="cabecalho-tela">
+                <div class="section-title">
+                    <h2>x História e Tradição</h2>
+                </div>
+                <div class="instalar-app-slot" data-install-slot="tela-cultura"></div>
             </div>
 
             <article class="card-cultura">
@@ -259,8 +270,11 @@
 
         <!-- TELA 5: SOBRE -->
         <section id="tela-sobre" class="tela">
-            <div class="section-title">
-                <h2> x Sobre o App</h2> <!-- trocar o X pelo ícone -->
+            <div class="cabecalho-tela">
+                <div class="section-title">
+                    <h2> x Sobre o App</h2> <!-- trocar o X pelo ícone -->
+                </div>
+                <div class="instalar-app-slot" data-install-slot="tela-sobre"></div>
             </div>
 
             <div class="card-creditos">
