@@ -527,6 +527,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('✅ App pronto!');
 });
 
+document.getElementsByClassName('btn-chegar')[0].addEventListener('click', ()=>{
+    window.open('https://maps.app.goo.gl/N9r3HrVkKbQuSxwG9', '_blank', 'noopener');
+});
+
 // Expor funções globalmente
 window.navegarPara = navegarPara;
 window.filtrarPorDia = filtrarPorDia;

@@ -304,12 +304,6 @@ header {
     border: var(--darker--white) 2px solid;
 }
 
-.btn-chegar a{
-    color: var(--whitew);
-    text-decoration: none;
-    font-weight: bold;
-}
-
 /*embaixo da hero*/
 .pre-destaques {
   text-align: center;
