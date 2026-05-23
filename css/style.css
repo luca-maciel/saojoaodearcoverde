@@ -14,6 +14,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "baloo2";
+  src: url("../assets/fontes/Baloo_2/Baloo2-VariableFont_wght.ttf") format(opentype);
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 * {
   margin: 0;
@@ -654,6 +661,69 @@ header {
 }
 
 /* ===== PROGRAMAÇÃO ===== */
+
+#tela-programacao> *{
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+#tela-programacao::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 237, 213),
+    rgba(253, 246, 238),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.cabecalho-tela{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 30px;
+}
+
+.logo-programacao{
+  display: flex;
+  max-width: 120px;
+}
+
+.logo-programacao img{
+  width: 90px;
+  height: auto;
+  margin-top: 30px;
+}
+
+.section-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.section-title h2{
+  font-family: "baloo2", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--primary-dark);
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.section-title p {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--grey-darker);
+  opacity: 0.9;
+  
+}
+
 .filtros {
   margin: 1rem 0;
   display: flex;
@@ -662,27 +732,45 @@ header {
   flex-wrap: wrap;
 }
 
+#filtro-dia{
+  color: var(--grey-darker);
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#filtro-dia:focus{
+  border: var(--primary) 2px solid;
+  outline: none;
+}
+
 .filtros label {
   font-weight: bold;
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 .filtros select {
   padding: 0.5rem 1rem;
   border-radius: 30px;
-  border: 1px solid #ddd;
-  background: white;
+  background: var(--whitew);
+  border: var(--cream--shadowy) 1px solid;
   font-size: 0.9rem;
 }
 
+.filtros option{
+  color: var(--grey-darker);
+  padding: 10px;
+}
+
 .header-dia {
+  font-family: "baloo2", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 1rem 0 0.5rem 0;
 }
 
 .header-dia h2 {
   font-size: 1.2rem;
-  color: var(--primary);
-  background: #ffe0b3;
+  color: var(--darker-wine);
+  background: var(--creams);
   display: inline-block;
   padding: 0.3rem 1rem;
   border-radius: 30px;
@@ -691,14 +779,15 @@ header {
 .card-show {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
+  justify-content: start;
   flex-wrap: wrap;
   gap: 0.8rem;
 }
 
 .horario-destaque {
   background: var(--primary);
-  color: white;
+  color: var(--whitew);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -718,7 +807,7 @@ header {
 
 .descricao-show {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--grey-light);
   margin-top: 4px;
 }
 
