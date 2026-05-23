@@ -118,7 +118,7 @@ async function carregarLocais() {
                     nome: r.restaurante,
                     endereco: montarEndereco(r),
                     contato: r.contato,
-                    descricao: '<🍽️> Restaurante'
+                    descricao: '🍽️ Restaurante'
                 });
             });
         }
