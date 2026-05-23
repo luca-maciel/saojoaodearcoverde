@@ -735,6 +735,7 @@ header {
 #filtro-dia{
   color: var(--grey-darker);
   appearance: none;
+  cursor: pointer;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
@@ -846,8 +847,8 @@ header {
 }
 
 .explorar-btn {
-  background: var(--primary);
-  color: white;
+  background: var(--whitew);
+  color: var(--grey-darker);
   border: none;
   padding: 0.7rem 1rem;
   border-radius: 30px;
@@ -855,6 +856,11 @@ header {
   font-weight: bold;
   flex: 1;
   min-width: 100px;
+}
+
+.explorar-btn:focus{
+  background: var(--primary);
+  color: var(--whitew);
 }
 
 .card-local h3 {
