@@ -579,7 +579,6 @@ header {
 .section-title {
   margin: 1rem 0 0.8rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--secondary);
   display: inline-block;
 }
 
