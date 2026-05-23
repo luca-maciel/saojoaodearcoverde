@@ -118,7 +118,7 @@ async function carregarLocais() {
                     nome: r.restaurante,
                     endereco: montarEndereco(r),
                     contato: r.contato,
-                    descricao: '🍽️ Restaurante'
+                    descricao: '<🍽️> Restaurante'
                 });
             });
         }
@@ -198,7 +198,7 @@ function preencherFiltroDias(lista) {
     const select = document.getElementById('filtro-dia');
     if (!select) return;
     
-    select.innerHTML = '<option value="todos">📅 Todos os Dias</option>';
+    select.innerHTML = '<option value="todos">  Todos os Dias</option>';
     
     const diasUnicos = [...new Set(lista.map(show => show.dia))];
     const ordemDias = ["SÁBADO", "DOMINGO", "SEGUNDA", "TERÇA", "QUARTA", "QUINTA", "SEXTA"];

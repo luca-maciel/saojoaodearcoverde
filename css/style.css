@@ -118,13 +118,13 @@ header {
     padding: 5px 10px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     border: none;
 }
 
 .btn-superior svg{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     color: var(--whitew);
 }
 
@@ -293,6 +293,15 @@ header {
   padding: 15px 68px;
   border-radius: 25px;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-programacao-header svg{
+  width: 25px;
+  height: 25px;
+  stroke-width: 0.3;
 }
 
 .btn-chegar{
@@ -302,6 +311,16 @@ header {
     padding: 15px 80px;
     border-radius: 25px;
     border: var(--darker--white) 2px solid;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-chegar svg{
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+  fill: var(--whitew);
 }
 
 /*embaixo da hero*/
@@ -311,25 +330,58 @@ header {
 }
 
 .pre-destaques h1 {
-  font-size: clamp(2rem, 8vw, 48px);
+  font-size: clamp(1rem, 0.8vw, 30px);
 }
 
-.subtitulo {
+.enfeite-linhaABV,
+.enfeite-linhaBLW{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.enfeite-linhaABV::before,
+.enfeite-linhaABV::after,
+.enfeite-linhaBLW::before,
+.enfeite-linhaBLW::after{
+  content: "";
+  width: 45px;
+  height: 1px;
+  background: var(--primary);
+  border-radius: 10px;
+  opacity: 0.3;
+}
+
+.enfeite-linhaABV span {
+  font-family: "lilita one", Arial, Helvetica, sans-serif;
   color: var(--primary);
-  font-weight: bold;
-  margin-bottom: 15px;
+  font-size: 10px;
+ letter-spacing: 2px;
+}
+
+.enfeite-bolinha{
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: block;
 }
 
 .pre-destaques h1 {
+  font-family: "lilita one", Arial, Helvetica, sans-serif;
   color: var(--primary-dark);
   font-size: 48px;
+  font-weight: 100;
   margin-bottom: 15px;
+  margin-top: 20px;
 }
 
 .descricao {
   color: var(--grey-light);
   font-size: 20px;
-  margin-bottom: 50px;
+  font-weight: 500;
+  margin-bottom: 25px;
 }
 
 .bolinhas {
@@ -338,6 +390,7 @@ header {
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 60px;
+  margin-top: 30px;
 }
 
 .bolinha {
@@ -346,15 +399,19 @@ header {
 }
 
 .bolinha h3 {
+  font-family: "lilita one", Arial, Helvetica, sans-serif;
   color: var(--primary-dark);
   margin-bottom: 10px;
   font-size: 18px;
+  font-weight: 100;
 }
 
 .bolinha p {
   color: var(--grey-light);
   font-size: 14px;
+  font-weight: 500;
   line-height: 1.5;
+  text-align:center;
 }
 
 .logo-opaco img {
@@ -811,6 +868,7 @@ header {
   color: var(--grey-light);
   cursor: pointer;
   transition: color 0.2s;
+  flex: 1;
 }
 
 #bottom-nav button span {
