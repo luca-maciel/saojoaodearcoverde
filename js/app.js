@@ -276,8 +276,8 @@ function renderizarShows(listaDeShows) {
 
 // RENDERIZAR LOCAIS (EXPLORAR)
 
-function renderizarLocais(categoriaDesejada) {
-    const container = document.getElementById('conteudo-explorar');
+function renderizarLocais(categoriaDesejada, tela) {
+    const container = document.getElementById(`conteudo-${tela}`);
     if (!container) return;
 
     container.innerHTML = '';
@@ -349,7 +349,7 @@ function mostrarAcontecendoAgora() {
 // MAPA OFFLINE
 
 function mostrarMapa() {
-    const container = document.getElementById('conteudo-explorar');
+    const container = document.getElementById('conteudo-cultura');
     if (!container) return;
 
     container.innerHTML = `

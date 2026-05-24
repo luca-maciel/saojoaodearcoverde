@@ -287,7 +287,7 @@
             </div>
 
             <nav class="explorar-menu">
-                <button onclick="renderizarLocais('comer')" class="explorar-btn">
+                <button onclick="renderizarLocais('comer', 'explorar')" class="explorar-btn">
                     x Onde Comer <!-- trocar o X pelo ícone -->
                 </button>
             </nav>
@@ -317,13 +317,13 @@
             </div>
 
             <nav class="explorar-menu">
-                <button onclick="renderizarLocais('turismo')" class="explorar-btn">
+                <button onclick="renderizarLocais('turismo', 'cultura')" class="explorar-btn" id="btn-turistando">
                     x Turistando <!-- trocar o X pelo ícone -->
                 </button>
-                <button onclick="renderizarLocais('ficar')" class="explorar-btn">
+                <button onclick="renderizarLocais('ficar', 'cultura')" class="explorar-btn" id="btn-onde-ficar">
                     x Onde Ficar <!-- trocar o X pelo ícone -->
                 </button>
-                <button onclick="mostrarMapa()" class="explorar-btn">
+                <button onclick="mostrarMapa()" class="explorar-btn" id="btn-mapa-offline">
                     x Mapa Offline <!-- trocar o X pelo ícone -->
                 </button>
             </nav>
@@ -412,7 +412,12 @@
                 </svg>
                 <span>Programação</span>
             </button>
-            <button onclick="navegarPara('tela-explorar')">
+            <button onclick="
+            navegarPara('tela-explorar')
+            setTimeout(()=>{
+                document.getElementsByClassName('explorar-btn')[0].click();
+            }, 200);
+            ">
                 <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" stroke-linecap="round"
                     stroke-linejoin="round" fill="none" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
