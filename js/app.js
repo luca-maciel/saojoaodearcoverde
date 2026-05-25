@@ -259,11 +259,8 @@ function renderizarShows(listaDeShows) {
             <div class="horario-destaque"> ${show.horario}</div>
             <div class="info-show">
                 <h3> ${show.artista}</h3>
-                <p class="polo-info"> 
-                <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M12.166 8.94c-0.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-0.726-0.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 0.862-0.305 1.867-0.834 2.94M8 16c0 0 6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
-                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                </svg>
+                <p class="polo-info" style="display: flex; align-items: center; gap: 5px;"> 
+                <i class="fa-solid fa-location-dot" style="font-size:12px; display: flex; align-items: center; justify-content: center; padding: 5px; color: gray;"></i>
                 ${show.polo}</p>
                 ${show.descricao ? `<p class="descricao-show">📝${show.descricao}</p>` : ''}
             </div>
@@ -300,22 +297,14 @@ function renderizarLocais(categoriaDesejada, tela) {
         card.className = 'card-local';
         card.innerHTML = `
             <h3>
-            <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M19 2H9C7.897 2 7 2.897 7 4v6H5c-1.103 0-2 0.897-2 2v9a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4c0-1.103-0.897-2-2-2zM5 12h6v8H5zM19 20h-6v-8c0-1.103-0.897-2-2-2H9V4h10z" />
-            <path d="M11 6h2v2h-2zM15 6h2v2h-2zM15 10.031h2V12h-2zM15 14h2v2h-2zM7 14.001h2v2H7z" />
-            </svg>
+            <i class="fa-regular fa-building" style="font-size:20px; display: flex; align-items: center; justify-content: center; padding: 5px;"></i>
              ${local.nome}</h3>
             <p class="local-descricao">${local.descricao || ''}</p>
-            <p class="local-endereco">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
-            <path d="M8 16l5.991-2L16 8l-6 2z" />
-            </svg>
-             ${local.endereco}</p>
-            ${local.contato ? `<p class="local-contato">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M17.707 12.293a0.999 0.999 0 0 0-1.414 0l-1.594 1.594c-0.739-0.22-2.118-0.72-2.992-1.594s-1.374-2.253-1.594-2.992l1.594-1.594a0.999 0.999 0 0 0 0-1.414l-4-4a0.999 0.999 0 0 0-1.414 0L3.581 5.005c-0.38 0.38-0.594 0.902-0.586 1.435 0.023 1.424 0.4 6.37 4.298 10.268s8.844 4.274 10.269 4.298h0.028c0.528 0 1.027-0.208 1.405-0.586l2.712-2.712a0.999 0.999 0 0 0 0-1.414zM17.58 19.005c-1.248-0.021-5.518-0.356-8.873-3.712-3.366-3.366-3.692-7.651-3.712-8.874L7 4.414 9.586 7 8.293 8.293a1 1 0 0 0-0.272 0.912c0.024 0.115 0.611 2.842 2.271 4.502s4.387 2.247 4.502 2.271a0.991 0.991 0 0 0 0.912-0.271L17 14.414 19.586 17z" />
-            </svg>
+            <p class="local-endereco" style="display: flex; align-items: center; gap: 5px;">
+            <i class="fa-regular fa-compass" style="font-size:12px; display: flex; align-items: center; justify-content: center; padding: 5px;"></i>
+            ${local.endereco}</p>
+            ${local.contato ? `<p class="local-contato" style="display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-phone" style="font-size:12px; display: flex; align-items: center; justify-content: center; padding: 5px;"></i>
              ${local.contato}</p>` : ''}
         `;
         container.appendChild(card);
