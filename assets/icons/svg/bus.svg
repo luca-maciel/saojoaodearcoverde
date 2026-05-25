@@ -1,5 +1,9 @@
-<svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <path d="M21.004 7.975V6c0-2.206-1.794-4-4-4h-10c-2.206 0-4 1.794-4 4v1.998l-0.076 4e-3A1 1 0 0 0 2 9v2a1 1 0 0 0 1 1h4e-3v6c0 0.735 0.403 1.372 0.996 1.72V21a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h10v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.276A1.994 1.994 0 0 0 21.004 18v-6a1 1 0 0 0 1-1V9.062a1.006 1.006 0 0 0-0.072-0.455c-0.203-0.487-0.635-0.604-0.928-0.632zM19.006 18H5.004v-5h14.001zM11.004 7v4h-6V7zM19.004 7v4h-6V7zM7.004 4h10c0.736 0 1.375 0.405 1.722 1H5.282c0.347-0.595 0.986-1 1.722-1z" />
-    <circle cx="7.5" cy="15.5" r="1.5" />
-    <circle cx="16.5" cy="15.5" r="1.5" />
+<svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M8 6v6" />
+    <path d="M15 6v6" />
+    <path d="M2 12h19.6" />
+    <path d="M18 18h3c0 0 0.5-1.7 0.8-2.8 0.1-0.4 0.2-0.8 0.2-1.2s-0.1-0.8-0.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+    <circle cx="7" cy="18" r="2" />
+    <path d="M9 18h5" />
+    <circle cx="16" cy="18" r="2" />
 </svg>
