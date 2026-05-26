@@ -25,7 +25,7 @@ function calcularHorarioPorOrdem(ordem) {
 async function iniciarBanco() {
     const SQL = await initSqlJs({
         locateFile: file =>
-            `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
+            `./js/${file}`
     });
     const response = await fetch('./db/sjDbTeste.db');
     const buffer = await response.arrayBuffer();
@@ -453,10 +453,24 @@ setInterval(atualizarContador, 1000);
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker registrado!', reg))
+            .then(reg => {
+                console.log('Service Worker registrado!', reg);
+                return reg.update();
+            })
             .catch(err => console.log('Service Worker falhou:', err));
     });
 }
+
+let atualizacaoRecarregouPagina = false;
+
+navigator.serviceWorker?.addEventListener('controllerchange', () => {
+    if (atualizacaoRecarregouPagina) {
+        return;
+    }
+
+    atualizacaoRecarregouPagina = true;
+    window.location.reload();
+});
 
 // INICIALIZAÇÃO
 

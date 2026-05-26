@@ -1,8 +1,7 @@
-// service worker para cache dos arquivos essenciais e suporte offline
+// Service worker para cache dos arquivos essenciais e suporte offline.
 
-const CACHE_NAME = 'sao-joao-arcoverde-v3';
+const CACHE_NAME = 'sao-joao-arcoverde-v4';
 
-// Arquivos essenciais para cache
 const assetsToCache = [
     './',
     './index.html',
@@ -11,50 +10,64 @@ const assetsToCache = [
     './css/style.css',
     './js/app.js',
     './js/sql-wasm.js',
+    './js/sql-wasm.wasm',
     './db/sjDbTeste.db'
 ];
 
-// Instalação - cache dos arquivos
 self.addEventListener('install', event => {
     console.log('Service Worker: Instalando...');
+
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            console.log('Service Worker: Cacheando arquivos...');
-            return cache.addAll(assetsToCache);
-        })
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(assetsToCache))
+            .then(() => self.skipWaiting())
     );
 });
 
-// Ativação - limpa caches antigos
 self.addEventListener('activate', event => {
     console.log('Service Worker: Ativando...');
+
     event.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(
-                keys.filter(key => key !== CACHE_NAME)
+        caches.keys()
+            .then(keys => Promise.all(
+                keys
+                    .filter(key => key !== CACHE_NAME)
                     .map(key => caches.delete(key))
-            );
-        })
+            ))
+            .then(() => self.clients.claim())
     );
 });
 
-// Fetch - estratégia cache-first
 self.addEventListener('fetch', event => {
-    // Ignora requisições que não são do mesmo domínio
-    if (!event.request.url.startsWith(self.location.origin)) {
+    if (!event.request.url.startsWith(self.location.origin) || event.request.method !== 'GET') {
         return;
     }
-    
+
+    const freshRequest = new Request(event.request, { cache: 'reload' });
+
     event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
-            // Retorna do cache ou faz fetch
-            return cachedResponse || fetch(event.request).catch(() => {
-                // Fallback para página offline (se necessário)
-                if (event.request.mode === 'navigate') {
-                    return caches.match('./index.html');
-                }
-                return new Response('Conteúdo indisponível offline');
-            });
-        })
+        fetch(freshRequest)
+            .then(networkResponse => {
+                const responseClone = networkResponse.clone();
+
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, responseClone);
+                });
+
+                return networkResponse;
+            })
+            .catch(() => {
+                return caches.match(event.request).then(cachedResponse => {
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    }
+
+                    if (event.request.mode === 'navigate') {
+                        return caches.match('./index.html');
+                    }
+
+                    return new Response('Conteudo indisponivel offline');
+                });
+            })
     );
 });
