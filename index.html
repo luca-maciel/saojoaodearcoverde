@@ -273,7 +273,7 @@
                 <button onclick="renderizarLocais('ficar', 'cultura')" class="explorar-btn" id="btn-onde-ficar">
                     <i class="fa-solid fa-bed"></i> Onde Ficar 
                 </button>
-                <button onclick="mostrarMapa()" class="explorar-btn" id="btn-mapa-offline">
+                <button onclick="mostrarMapa();" class="explorar-btn" id="btn-mapa-offline">
                     <i class="fa-solid fa-map"></i> Mapa Offline 
                 </button>
             </nav>
@@ -536,7 +536,12 @@
                 <i class="fa-solid fa-utensils" style="font-size:20px; display: flex; align-items: center; justify-content: center; padding: 5px;"></i>
                 <span>Culinária</span>
             </button>
-            <button onclick="navegarPara('tela-cultura')">
+            <button onclick="
+            navegarPara('tela-cultura');
+            setTimeout(()=>{
+                document.getElementById('btn-mapa-offline').click();
+            }, 200);
+            ">
                 <i class="fa-solid fa-location-dot" style="font-size:20px; display: flex; align-items: center; justify-content: center; padding: 5px;"></i>
                 <span>Mapa</span>
             </button>
