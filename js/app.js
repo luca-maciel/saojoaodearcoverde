@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.getElementsByClassName('btn-chegar')[0].addEventListener('click', () => {
-    window.open('https://maps.app.goo.gl/N9r3HrVkKbQuSxwG9', '_blank', 'noopener');
+    window.open('https://maps.app.goo.gl/UxmwHiNGLoBodJfv7', '_blank', 'noopener');
 });
 
 // Expor funções globalmente
