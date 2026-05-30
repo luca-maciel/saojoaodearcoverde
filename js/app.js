@@ -1,6 +1,10 @@
 // SÃO JOÃO EM ARCOVERDE - COM SQLITE
 // Integrado com dados do SQLite
 
+import { inject } from "@vercel/analytics"
+
+inject();
+
 let todosOsShows = [];
 let todosOsLocais = [];
 let db;
